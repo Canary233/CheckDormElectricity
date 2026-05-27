@@ -2,3 +2,4 @@ main-private.py
 \.conda
 \.idea
 \.vscode
+config.yaml

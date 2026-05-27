@@ -1,0 +1,30 @@
+# 请将此文件复制并重命名为config.yaml
+# 可以对 https://application.xiaofubao.com/app/electric/queryISIMSRoomSurplus 进行抓包获取所需信息
+
+# 钉钉机器人推送设置(若留空则不推送)
+webhook: ''  # e.g. 'https://oapi.dingtalk.com/robot/send?access_token=xxx'
+secret: ''   # optional: the signing secret if your bot uses it
+
+# URL配置
+request_address: 'https://application.xiaofubao.com/app/electric/queryISIMSRoomSurplus'
+request_timeout: 15
+
+# 低电量提醒阈值
+low_threshold: 10
+
+# 数据配置
+data_studentRoom:
+  areaId: ''
+  buildingCode: ''
+  floorCode: ''
+  roomCode: ''
+  platform: ''
+
+# Cookie配置(名称为shiroJID)
+request_cookie: ''
+
+# 可选：如接口要求额外请求头，可从DevTools复制后填写
+request_headers: {}
+
+# Optional: enable saving last response to file (set true/false)
+save_last_response: false
