@@ -2,7 +2,7 @@
 
 - 本项目适配宁波财经学院(NBUFE)
 - 使用本项目需要抓包基础。 👉[学习如何使用微信调试抓包](./PacketCapture.md)
-- 本项目用于自动查询宿舍房间和空调房间的电量，并通过钉钉机器人发送提醒。
+- 本项目用于自动查询宿舍房间电量，并通过钉钉机器人发送提醒。
 - 本项目由 https://github.com/Sh1rokoDev/CheckDormElectricity 修改而来
 
 ## 安装
@@ -36,6 +36,7 @@ data_studentRoom:
   platform: ''
 
 request_cookie: 'shiroJID=你的Cookie值'
+notify_only_when_low: false
 save_last_response: false
 ```
 
@@ -87,6 +88,14 @@ Time: 2026-05-27 00:42:51
 ```yaml
 low_threshold: 10
 ```
+
+仅低电量时推送：
+
+```yaml
+notify_only_when_low: true
+```
+
+开启后，电量不低于阈值时只在命令行输出，不发送钉钉消息。接口异常、Cookie 失效、配置错误仍会推送提醒。
 
 保存最近一次响应：
 

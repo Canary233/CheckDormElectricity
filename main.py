@@ -27,6 +27,7 @@ class AppConfig:
     data_student_room: dict[str, Any]
     save_last_response: bool
     low_threshold: float
+    notify_only_when_low: bool
 
 
 @dataclass
@@ -58,6 +59,7 @@ def load_config(path: Path = CONFIG_PATH) -> AppConfig:
         data_student_room=raw.get("data_studentRoom") or {},
         save_last_response=bool(raw.get("save_last_response", False)),
         low_threshold=float(raw.get("low_threshold", 10)),
+        notify_only_when_low=bool(raw.get("notify_only_when_low", False)),
     )
 
 
@@ -237,6 +239,10 @@ def main() -> None:
         now = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
         report = build_report(now, student)
         should_alarm = student.surplus < config.low_threshold
+        if config.notify_only_when_low and not should_alarm:
+            print(report)
+            print(f"电量未低于阈值 {config.low_threshold:g} 度，已跳过钉钉推送")
+            return
         send_message(config, report + ("\n该充电费了！\n" if should_alarm else ""), alarm=should_alarm)
     except Exception as exc:
         send_message(config, str(exc), alarm=True)

@@ -12,6 +12,9 @@ request_timeout: 15
 # 低电量提醒阈值
 low_threshold: 10
 
+# 是否仅在低于阈值时推送；接口异常或Cookie失效仍会推送
+notify_only_when_low: false
+
 # 数据配置
 data_studentRoom:
   areaId: ''
